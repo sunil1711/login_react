@@ -8,7 +8,7 @@ import { loginUserAction } from '../actions/loginAction';
 
 
 
-class LoginPage extends Component {
+class Register extends Component {
   onHandleLogin = (event) => {
     event.preventDefault();
 
@@ -33,10 +33,10 @@ class LoginPage extends Component {
 
   render() {
     
-    if(this.props.login)
+    if(this.props.login.response)
     {
       console.log(this.props.login)
-    var {username,age,address,success,message,token}=this.props.login;
+    var {username,age,address,success,message,token}=this.props.login.response.response;
     console.log(success)
     }
    
@@ -52,8 +52,8 @@ class LoginPage extends Component {
 
     return (
       <div>
-        <h3>Login Pages</h3>
-        {!success ? <div>{message}</div> : <Redirect to='dashboard' />}
+        <h3>Register Pages</h3>
+       
         <form onSubmit={this.onHandleLogin}>
           <div>
             <label htmlFor="email">Email</label>
@@ -64,10 +64,10 @@ class LoginPage extends Component {
             <input type="password" name="password" id="password" />
           </div>
           <div>
-            <button>Login</button>
+            <button>Sign-up</button>
           </div>
         </form>
-        Don't have account? <Link to='register'>Register here</Link>
+  
       </div>
     );
   }
@@ -75,4 +75,4 @@ class LoginPage extends Component {
 
 const mapStateToProps = (state) => (state);
 
-export default connect(mapStateToProps)(LoginPage);
+export default connect(mapStateToProps)(Register);

@@ -5,35 +5,49 @@ import  Login  from './components/login';
 import { connect} from 'react-redux'
 import { Store } from 'redux';
 import { Provider } from 'react-redux';
-import { Route, Switch } from 'react-router';
-import {BrowserRouter} from 'react-router-dom';
+
+
 import {redux}  from 'react-redux';
 import  configureStore from  './store/store';
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from "./reducers";
-import  {Header}  from  './components/Header'
-import { Footer } from './components/Footer';
+import  Header from  './components/Header';
+import  {Footer}  from  './components/Footer'
+import  LoginPage   from './components/login';
+import Dashboard from './components/Dashboard'
+import {BrowserRouter,Route,Switch,withRouter} from 'react-router-dom';
+import Register from './components/Register';
 
-const store = createStore(rootReducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
+//const store = createStore(rootReducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 var token=localStorage.getItem('token')
 
-function App() {
+function App(props) {
+  console.log(props)
   return (
-    <Provider store={store}>
-     {token && <Header/>}
-  
-     <BrowserRouter>
-   <Switch>
-    <Route path="/" ><Login/></Route>
 
-    </Switch>
-   </BrowserRouter>
-   {token && <Footer/>}
+    <BrowserRouter>
+   
+
+  
+      <Switch>
+     
+   
+        <Route path='/' exact={true} component={LoginPage} />
+        <Route path='/login' component={LoginPage} />
+        <Route path='/dashboard' component={Dashboard} />
+     
+        <Route path='/users' component={Dashboard} />
+
+        <Route path='/register' component={Register}/>
+      </Switch>
+  
+  </BrowserRouter>
+
   
    
-    </Provider>
   );
 }
 
-export default App;
+export default (App);

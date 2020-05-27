@@ -2,13 +2,10 @@ import * as types from '../actions';
 
 
 const initialState={
-  username:"sunilold",
-  age:'34',
-  address:"kmk",
-    success: false,
-    message: 'Authentication successful!',
- 
+  response:{
 
+    age:"67"
+  }
 }
 
 export default function(state = initialState, action) {
@@ -16,7 +13,7 @@ export default function(state = initialState, action) {
 
   switch(action.type) {
     case types.LOGIN_USER_SUCCESS:
-      return { ...state, ...response};
+      return { ...state, response };
     case types.LOGIN_USER_ERROR:
       return { ...state, response };
     default:
